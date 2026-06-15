@@ -11,7 +11,7 @@ interface Tache {
 export default function App() {
   const [taches, setTaches] = useState<Tache[]>([]);
   const [titre, setTitre] = useState("");
-  const [priorite, setPriorite] = useState<Tache["priorite"]>("haute");
+  const [priorite, setPriorite] = useState<Tache["priorite"]>("basse");
   const [onglet, setOnglet] = useState<"encours" | "terminees">("encours");
 
   function ajouterTache() {
@@ -70,9 +70,9 @@ export default function App() {
             onKeyDown={(e) => e.key === "Enter" && ajouterTache()}
           />
           <select value={priorite} onChange={(e) => setPriorite(e.target.value as Tache["priorite"])}>
-            <option value="haute">🔴 Haute</option>
-            <option value="moyenne">🟡 Moyenne</option>
             <option value="basse">🟢 Basse</option>
+            <option value="moyenne">🟡 Moyenne</option>
+            <option value="haute">🔴 Haute</option>
           </select>
           <button onClick={ajouterTache}>Ajouter</button>
         </div>
