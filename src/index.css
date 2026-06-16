@@ -1,13 +1,16 @@
 body {
   font-family: system-ui, sans-serif;
-  background: #f5f5f3;
+  background-image: url("/ccc.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   padding: 1rem;
   margin: 0;
   box-sizing: border-box;
 }
 
 .container {
-  background: white;
+  background: rgba(255, 255, 255, 0.10);
   border-radius: 12px;
   padding: 3rem;
   width: 100%;
@@ -19,6 +22,7 @@ h1 {
   font-size: 2rem;
   font-weight: 500;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .onglets {
@@ -109,9 +113,9 @@ h1 {
   text-align: center;
 }
 
-.haute   { background: #FCEBEB; color: #A32D2D; }
-.moyenne { background: #FAEEDA; color: #854F0B; }
-.basse   { background: #EAF3DE; color: #3B6D11; }
+.haute   { background: #FCEBEB; color: #e90000; }
+.moyenne { background: #FAEEDA; color: #ff9008; }
+.basse   { background: #EAF3DE; color: #61ce09; }
 
 .task-list select {
   padding: 4px 8px;
@@ -130,4 +134,17 @@ h1 {
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
+}
+
+.btn-trier {
+  display: block;
+  margin-top: 1rem;
+  margin-left: auto;
+  background: white;
+  color: #1a1a1a;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
 }

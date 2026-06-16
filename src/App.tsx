@@ -14,8 +14,10 @@ export default function App() {
   const [priorite, setPriorite] = useState<Tache["priorite"]>("basse");
   const [onglet, setOnglet] = useState<"encours" | "terminees">("encours");
 
+  
+  
   function ajouterTache() {
-    if (!titre.trim()) return;
+    if (titre.trim() == "") return;
     const nouvelle: Tache = {
       id: Date.now(),
       titre,
@@ -44,6 +46,19 @@ export default function App() {
     }
     setTaches(taches.map((t) => t.id === id ? { ...t, avancement: valeur } : t));
   }
+
+
+
+
+  function trierParPriorite() {
+    const ordre = { haute: 1, moyenne: 2, basse: 3 };
+    const trie = [...taches].sort((a, b) => ordre[a.priorite] - ordre[b.priorite]);
+    setTaches(trie);
+  }
+
+
+
+
 
   const tachesFiltrees = taches.filter((t) =>
     onglet === "terminees" ? t.terminee : !t.terminee
@@ -74,7 +89,7 @@ export default function App() {
             <option value="moyenne">🟡 Moyenne</option>
             <option value="haute">🔴 Haute</option>
           </select>
-          <button onClick={ajouterTache}>Ajouter</button>
+          <button onClick={ajouterTache}> ☑️ Ajouter</button>
         </div>
       )}
 
@@ -93,10 +108,18 @@ export default function App() {
                 <option key={v} value={v}>{v}%</option>
               ))}
             </select>
-            <button onClick={() => supprimerTache(t.id)}>Supprimer</button>
+            <button onClick={() => supprimerTache(t.id)}> 🗑️ Supprimer </button>
           </li>
         ))}
       </ul>
+
+      {/* Bouton trier */}
+      {onglet === "encours" && (
+        <button onClick={trierParPriorite} className="btn-trier">
+          🔁 Trier par priorité
+        </button>
+      )}
+
     </div>
   );
 }
