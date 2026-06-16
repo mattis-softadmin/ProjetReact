@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 
 interface Tache {
   id: number;
@@ -13,9 +14,22 @@ export default function App() {
   const [titre, setTitre] = useState("");
   const [priorite, setPriorite] = useState<Tache["priorite"]>("basse");
   const [onglet, setOnglet] = useState<"encours" | "terminees">("encours");
+  const [charge, setCharge] = useState(false);
+  // Charger au démarrage
+  useEffect(() => {
+    const data = localStorage.getItem("taches");
+    if (data) {
+      setTaches(JSON.parse(data));
+    }
+    setCharge(true);
+  }, []);
 
-  
-  
+  // Sauvegarder seulement après le chargement
+  useEffect(() => {
+    if (!charge) return;
+    localStorage.setItem("taches", JSON.stringify(taches));
+  }, [taches, charge]);
+
   function ajouterTache() {
     if (titre.trim() == "") return;
     const nouvelle: Tache = {
